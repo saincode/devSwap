@@ -177,10 +177,10 @@ export function LandingPage() {
             <p className="mt-2 text-sm">Empowering peers through knowledge exchange.</p>
           </div>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition">About</a>
-            <a href="#" className="hover:text-white transition">Features</a>
-            <a href="#" className="hover:text-white transition">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition">Terms of Service</a>
+            <button className="hover:text-white transition cursor-pointer">About</button>
+            <button className="hover:text-white transition cursor-pointer">Features</button>
+            <button className="hover:text-white transition cursor-pointer">Privacy Policy</button>
+            <button className="hover:text-white transition cursor-pointer">Terms of Service</button>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-800 text-sm text-center md:text-left flex flex-col md:flex-row justify-between">

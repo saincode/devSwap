@@ -44,7 +44,7 @@ function SkillPill({ skill, variant }) {
 
 // ─── Main Component ────────────────────────────────────────────────────────────
 export function DashboardPage() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [profileCompletion, setProfileCompletion] = useState(0);
