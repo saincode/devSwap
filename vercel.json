@@ -4,16 +4,7 @@
   "outputDirectory": "frontend/build",
   "devCommand": "cd frontend && npm start",
   "framework": "create-react-app",
-  "functions": {
-    "backend/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/backend/server.js"
-    },
     {
       "source": "/:path*",
       "destination": "/index.html"
