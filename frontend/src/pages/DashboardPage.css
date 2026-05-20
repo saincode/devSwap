@@ -1,0 +1,9 @@
+/* DashboardPage CSS - Minimal file for animations and edge cases */
+
+/* Spinner animation for loading state */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
