@@ -44,8 +44,6 @@ function SkillPill({ skill, variant }) {
 
 // ─── Main Component ────────────────────────────────────────────────────────────
 export function DashboardPage() {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [profileCompletion, setProfileCompletion] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -59,8 +57,6 @@ export function DashboardPage() {
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
-
-  const handleLogout = () => { logout(); navigate('/'); };
 
   const hasSkills = profile?.skillsOffered?.length > 0 && profile?.skillsWanted?.length > 0;
   const socialLinks = profile?.socialLinks || {};
