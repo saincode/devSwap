@@ -1,0 +1,13 @@
+{
+  "name": "devswap",
+  "version": "1.0.0",
+  "description": "DevSwap - Skill Exchange Platform",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "start": "cd frontend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
