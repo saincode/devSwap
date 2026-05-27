@@ -1,0 +1,55 @@
+# Backend folder - not needed for frontend deployment
+backend/
+backend/**
+
+# Version control
+.git
+.gitignore
+.github
+
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+.npm
+
+# Environment files (keep local copies, don't upload)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Documentation
+README.md
+CHANGELOG.md
+
+# Build artifacts from local testing
+frontend/build
+frontend/dist
+.next
+out
+
+# Testing
+coverage
+.nyc_output
+
+# Temporary files
+*.log
+*.tmp
+
+# Config files for backend
+docker-compose.yml
+Dockerfile
+.dockerignore

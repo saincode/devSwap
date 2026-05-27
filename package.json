@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "DevSwap - Skill Exchange Platform",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "start": "cd frontend && npm start"
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start",
+    "dev": "cd frontend && npm start",
+    "install:all": "npm install && cd frontend && npm install",
+    "setup": "npm run install:all && npm run build"
   },
   "keywords": [],
   "author": "",
