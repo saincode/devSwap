@@ -43,7 +43,7 @@ export function Sidebar() {
   ];
 
   return (
-    <div className={`h-screen bg-[#13131a] text-white transition-all duration-300 flex flex-col ${isCollapsed ? 'w-[80px]' : 'w-[280px]'} flex-shrink-0 font-sans border-r border-[#22222d] z-50`}>
+    <div className={`h-screen bg-gradient-to-b from-indigo-950 via-indigo-950 to-indigo-900 text-white transition-all duration-300 flex flex-col ${isCollapsed ? 'w-[80px]' : 'w-[280px]'} flex-shrink-0 font-sans border-r border-indigo-900/40 z-50`}>
       <div className="h-20 flex items-center justify-between px-6 shrink-0">
         {!isCollapsed && (
           <Link to="/" className="flex items-center gap-3">
@@ -58,15 +58,15 @@ export function Sidebar() {
             setIsCollapsed(!isCollapsed);
             if (!isCollapsed) setSettingsOpen(false);
           }}
-          className={`p-2 rounded-xl hover:bg-[#1e1e26] transition-colors ${isCollapsed ? 'mx-auto' : ''}`}
+          className={`p-2 rounded-xl hover:bg-white/10 transition-colors ${isCollapsed ? 'mx-auto' : ''}`}
         >
-          <Menu size={22} className="text-gray-400 hover:text-white" />
+          <Menu size={22} className="text-indigo-200 hover:text-white" />
         </button>
       </div>
 
       <div className="flex-1 overflow-y-auto py-6 flex flex-col gap-2 px-4 scrollbar-hide">
         {!isCollapsed && (
-          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">Menu</div>
+          <div className="text-xs font-semibold text-indigo-300/50 uppercase tracking-wider mb-2 px-2">Menu</div>
         )}
         {navItems.map((item) => (
           <Link
@@ -74,12 +74,12 @@ export function Sidebar() {
             to={item.path}
             className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-4 px-4 py-3 rounded-xl transition-all duration-200 ${
               isActive(item.path) 
-                ? 'bg-[#1e1e26] text-white font-medium' 
-                : 'text-gray-400 hover:bg-[#1e1e26] hover:text-white'
+                ? 'bg-indigo-600 text-white font-semibold shadow-md shadow-indigo-600/20' 
+                : 'text-indigo-200/70 hover:bg-white/10 hover:text-white'
             }`}
             title={isCollapsed ? item.name : ""}
           >
-            <div className={`${isActive(item.path) ? 'text-indigo-500' : ''}`}>
+            <div className={`${isActive(item.path) ? 'text-white' : 'text-indigo-300'}`}>
                {item.icon}
             </div>
             {!isCollapsed && <span>{item.name}</span>}
@@ -87,20 +87,24 @@ export function Sidebar() {
         ))}
         
         {isAuthenticated && (
-          <div className="mt-6 pt-4 flex flex-col gap-2 border-t border-[#1e1e26]">
+          <div className="mt-6 pt-4 flex flex-col gap-2 border-t border-indigo-900/60">
             {!isCollapsed && (
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">System</div>
+              <div className="text-xs font-semibold text-indigo-300/50 uppercase tracking-wider mb-2 px-2">System</div>
             )}
             <button
               onClick={() => {
                 if (isCollapsed) setIsCollapsed(false);
                 setSettingsOpen(!settingsOpen);
               }}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 text-gray-400 hover:bg-[#1e1e26] hover:text-white`}
+              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 ${
+                settingsOpen 
+                  ? 'bg-white/10 text-white font-medium' 
+                  : 'text-indigo-200/70 hover:bg-white/10 hover:text-white'
+              }`}
               title={isCollapsed ? "Settings" : ""}
             >
               <div className={`flex items-center ${isCollapsed ? 'justify-center w-full' : 'justify-start'} gap-4`}>
-                <Settings size={20} />
+                <Settings size={20} className={`${settingsOpen ? 'text-white' : 'text-indigo-300'}`} />
                 {!isCollapsed && <span>Settings</span>}
               </div>
               {!isCollapsed && (
@@ -112,20 +116,17 @@ export function Sidebar() {
             {!isCollapsed && settingsOpen && (
               <div className="flex flex-col gap-1 pl-12 pr-4 mt-1 mb-2 relative">
                 {/* Vertical line indicator */}
-                <div className="absolute left-6 top-0 bottom-0 w-px bg-[#2a2a35]"></div>
+                <div className="absolute left-6 top-0 bottom-0 w-px bg-indigo-500/20"></div>
                 
-                <div className="py-2.5 text-sm text-gray-500 cursor-not-allowed hover:text-gray-400 transition-colors">Account</div>
-                <div className="py-2.5 text-sm text-gray-500 cursor-not-allowed hover:text-gray-400 transition-colors">Billing</div>
                 <Link
                   to="/profile"
-                  className={`py-2.5 text-sm transition-colors ${isActive('/profile') ? 'text-white font-medium' : 'text-gray-400 hover:text-white'}`}
+                  className={`py-2 text-sm transition-colors ${isActive('/profile') ? 'text-white font-semibold' : 'text-indigo-200/70 hover:text-white'}`}
                 >
                   Edit Profile
                 </Link>
-                <div className="py-2.5 text-sm text-gray-500 cursor-not-allowed hover:text-gray-400 transition-colors">Invite People</div>
                 <button 
                   onClick={handleLogout}
-                  className="py-2.5 text-sm text-left text-gray-400 hover:text-red-400 transition-colors"
+                  className="py-2 text-sm text-left text-indigo-200/70 hover:text-rose-400 transition-colors"
                 >
                   Sign Out
                 </button>
@@ -137,10 +138,10 @@ export function Sidebar() {
       
       {/* For collapsed logout icon */}
       {isAuthenticated && isCollapsed && (
-         <div className="p-4 mb-4 border-t border-[#1e1e26]">
+         <div className="p-4 mb-4 border-t border-indigo-900/60">
            <button
              onClick={handleLogout}
-             className="w-full flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-[#1e1e26] hover:text-red-400 transition-all duration-200"
+             className="w-full flex items-center justify-center p-3 rounded-xl text-indigo-200/70 hover:bg-white/10 hover:text-rose-400 transition-all duration-200"
              title="Logout"
            >
              <LogOut size={20} />
