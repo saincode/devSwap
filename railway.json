@@ -1,0 +1,7 @@
+{
+  "name": "devswap-frontend",
+  "builder": "nixpacks",
+  "buildCommand": "npm run build",
+  "startCommand": "npm start",
+  "rootDirectory": "frontend"
+}
