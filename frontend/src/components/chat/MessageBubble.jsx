@@ -53,7 +53,8 @@ function FileAttachment({ attachment, isMine }) {
   if (!attachment) return null;
 
   const isImage = attachment.mimetype?.startsWith('image/');
-  const fileUrl = `http://localhost:5000${attachment.url}`;
+  const BASE_URL = (process.env.REACT_APP_API_URL || 'http://localhost:5000/api').replace('/api', '');
+  const fileUrl = `${BASE_URL}${attachment.url}`;
   const sizeKB = Math.round((attachment.size || 0) / 1024);
 
   if (isImage) {

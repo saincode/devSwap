@@ -32,7 +32,8 @@ export function SocketProvider({ children }) {
       return;
     }
 
-    const newSocket = io('http://localhost:5000', {
+    const SOCKET_URL = (process.env.REACT_APP_API_URL || 'http://localhost:5000/api').replace('/api', '');
+    const newSocket = io(SOCKET_URL, {
       auth: { token },
       transports: ['websocket'],
     });
