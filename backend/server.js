@@ -17,38 +17,14 @@ const server = http.createServer(app);
 // ─────────────────────────────────────────────────────────────────────────────
 // Socket.IO setup
 // ─────────────────────────────────────────────────────────────────────────────
-const CLIENT_URL = (process.env.CLIENT_URL || 'http://localhost:3000').replace(/\/$/, '');
-
-const allowedOrigins = [
-  CLIENT_URL,
-  'http://localhost:3000',
-];
-
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin) return callback(null, true);
-    const normalised = origin.replace(/\/$/, '');
-    if (allowedOrigins.includes(normalised)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS blocked: ${origin}`));
-    }
-  },
+  origin: true,
   credentials: true,
 };
 
 const io = new Server(server, {
   cors: {
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      const normalised = origin.replace(/\/$/, '');
-      if (allowedOrigins.includes(normalised)) {
-        callback(null, true);
-      } else {
-        callback(new Error(`CORS blocked: ${origin}`));
-      }
-    },
+    origin: true,
     methods: ['GET', 'POST'],
     credentials: true,
   },
