@@ -17,9 +17,11 @@ const server = http.createServer(app);
 // ─────────────────────────────────────────────────────────────────────────────
 // Socket.IO setup
 // ─────────────────────────────────────────────────────────────────────────────
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
+
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: CLIENT_URL,
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -31,7 +33,10 @@ connectDB();
 // ─────────────────────────────────────────────────────────────────────────────
 // Middleware
 // ─────────────────────────────────────────────────────────────────────────────
-app.use(cors());
+app.use(cors({
+  origin: CLIENT_URL,
+  credentials: true,
+}));
 app.use(express.json());
 
 // Serve uploaded files as static assets
