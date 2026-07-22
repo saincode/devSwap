@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { useAuth } from './hooks/useAuth';
 import { Sidebar } from './components/Sidebar';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -16,20 +17,29 @@ import { useSocket } from './context/SocketContext';
 import './App.css';
 
 // Pages that should NOT show the sidebar
-const NO_SIDEBAR_PATHS = ['/', '/login', '/register'];
+const NO_SIDEBAR_PATHS = ['/login', '/register'];
+
+// Smart home: redirect authenticated users to dashboard, otherwise show landing page
+function SmartHome() {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <LandingPage />;
+}
 
 // Inner component that can access SocketContext
 function AppRoutes() {
   const { socket } = useSocket();
+  const { isAuthenticated } = useAuth();
   const location = useLocation();
-  const showSidebar = !NO_SIDEBAR_PATHS.includes(location.pathname);
+  // Hide sidebar on auth pages and on the landing page when not logged in
+  const showSidebar = !NO_SIDEBAR_PATHS.includes(location.pathname)
+    && !(location.pathname === '/' && !isAuthenticated);
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
       {showSidebar && <Sidebar />}
       <div className="flex-1 overflow-y-auto">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<SmartHome />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 

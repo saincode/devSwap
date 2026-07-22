@@ -67,7 +67,11 @@ export function SocketProvider({ children }) {
   }, [token]);
 
   // ── Expose a reset function to clear count when user opens chat ───────────
-  const resetNotificationCount = () => setNotificationCount(0);
+  const resetNotificationCount = () => {
+    setNotificationCount(0);
+    // Persist mark-all-read to the database so the count doesn't reappear on next login
+    notificationAPI.markRead().catch(() => {});
+  };
 
   return (
     <SocketContext.Provider value={{ socket, onlineUsers, notificationCount, resetNotificationCount }}>

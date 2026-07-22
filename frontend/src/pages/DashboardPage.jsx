@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
-  Search, Bell, HelpCircle,
+  HelpCircle,
   GraduationCap, BookOpen, Target, Flag,
   Lightbulb, ArrowRight, ChevronRight,
   User, Award, Link2,
@@ -90,25 +90,10 @@ export function DashboardPage() {
 
       {/* ══ TOP BAR ══════════════════════════════════════════ */}
       <div className="db-topbar">
-        <div className="db-search-wrap">
-          <Search size={14} className="db-search-icon" />
-          <input
-            className="db-search-input"
-            type="text"
-            placeholder="Search skills, people..."
-            readOnly
-          />
-        </div>
         <div className="db-topbar-right">
-          <button className="db-topbar-icon-btn" title="Notifications">
-            <Bell size={16} />
-          </button>
-          <button className="db-topbar-icon-btn" title="Help">
+          <button className="db-topbar-icon-btn" title="FAQ">
             <HelpCircle size={16} />
           </button>
-          <Link to="/profile-setup" className="db-edit-btn">
-            <Edit3 size={13} /> Edit Profile
-          </Link>
         </div>
       </div>
 
@@ -249,9 +234,8 @@ export function DashboardPage() {
           {/* Quick Actions */}
           <div className="db-quick-actions">
             {[
-              { Icon: Users,         label: 'Browse Matches',  desc: 'Find your skill partner',   path: '/matches'       },
-              { Icon: MessageCircle, label: 'Messages',         desc: 'Chat with connections',     path: '/chat'          },
-              { Icon: Edit3,         label: 'Edit Profile',     desc: 'Update skills & info',      path: '/profile-setup' },
+              { Icon: Users,         label: 'Browse Matches', desc: 'Find your skill partner', path: '/matches' },
+              { Icon: MessageCircle, label: 'Messages',        desc: 'Chat with connections',   path: '/chat'    },
             ].map(a => (
               <Link key={a.path} to={a.path} className="db-qa-card">
                 <div className="db-qa-icon"><a.Icon size={16} /></div>

@@ -11,6 +11,7 @@ import {
   LogOut,
   LogIn,
   UserPlus,
+  UserCog,
   Menu,
 } from 'lucide-react';
 
@@ -279,9 +280,8 @@ export function Sidebar() {
 
   const navItems = isAuthenticated
     ? [
-        { name: 'About',     path: '/',          icon: <Home size={18} /> },
-        { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={18} /> },
-        { name: 'Matches',   path: '/matches',   icon: <Users size={18} /> },
+        { name: 'Dashboard',    path: '/dashboard',    icon: <LayoutDashboard size={18} /> },
+        { name: 'Matches',      path: '/matches',      icon: <Users size={18} /> },
         {
           name: 'Chat',
           path: '/chat',
@@ -289,6 +289,7 @@ export function Sidebar() {
           badge: notificationCount > 0 ? notificationCount : null,
           onClick: resetNotificationCount,
         },
+        { name: 'Edit Profile', path: '/profile-setup', icon: <UserCog size={18} /> },
       ]
     : [
         { name: 'About',    path: '/',         icon: <Home size={18} /> },
