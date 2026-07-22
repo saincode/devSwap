@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight, Zap, MessageCircle, Search,
   Shield, Award, Users, CheckCircle,
-  GraduationCap, BookOpen, Star, ChevronRight,
-  TrendingUp, Code, Layers, Globe,
+  GraduationCap, Star,
+  TrendingUp, Code, Layers,
 } from 'lucide-react';
 import './LandingPage.css';
 
@@ -441,18 +441,18 @@ export function LandingPage() {
           <div>
             <div className="lp-footer-col-title">Company</div>
             <ul className="lp-footer-col-links">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Careers</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
             </ul>
           </div>
 
           <div>
             <div className="lp-footer-col-title">Legal</div>
             <ul className="lp-footer-col-links">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/cookies">Cookie Policy</a></li>
             </ul>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   HelpCircle,
-  GraduationCap, BookOpen, Target, Flag,
+  GraduationCap, BookOpen, Flag,
   Lightbulb, ArrowRight, ChevronRight,
   User, Award, Link2,
   Code2, Briefcase, Globe, Pencil,
@@ -37,9 +37,6 @@ const GOAL_DESCRIPTIONS = {
   'College / Academic': 'Supporting coursework & academic projects.',
 };
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-const initials = (name = '') =>
-  name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || '?';
 
 const VEGGIE_AVATARS = [
   { id: '1', url: '/avatars/avatar_carrot.png',   name: 'Carrot'    },

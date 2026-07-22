@@ -275,6 +275,7 @@ function SidebarBadges({ badges }) {
 }
 
 // ─── Completion Strip (inside hero) ──────────────────────────────────────────
+// eslint-disable-next-line no-unused-vars
 function CompletionStrip({ percent, checks }) {
   const barWidth = `${percent}%`;
   return (
