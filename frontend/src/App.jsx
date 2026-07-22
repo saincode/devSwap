@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -15,13 +15,18 @@ import { ChatPage } from './pages/ChatPage';
 import { useSocket } from './context/SocketContext';
 import './App.css';
 
+// Pages that should NOT show the sidebar
+const NO_SIDEBAR_PATHS = ['/', '/login', '/register'];
+
 // Inner component that can access SocketContext
 function AppRoutes() {
   const { socket } = useSocket();
+  const location = useLocation();
+  const showSidebar = !NO_SIDEBAR_PATHS.includes(location.pathname);
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
-      <Sidebar />
+      {showSidebar && <Sidebar />}
       <div className="flex-1 overflow-y-auto">
         <Routes>
           <Route path="/" element={<LandingPage />} />

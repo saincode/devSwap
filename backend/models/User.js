@@ -76,6 +76,12 @@ const userSchema = new mongoose.Schema(
       behance: { type: String, default: '' },
     },
 
+    // ── Avatar ───────────────────────────────────────────────────────────────
+    avatar: {
+      type: String,
+      default: '1',
+    },
+
     // ── Badges ───────────────────────────────────────────────────────────────
     badges: {
       type: [String],

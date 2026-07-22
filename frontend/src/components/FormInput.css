@@ -1,42 +1,58 @@
+/* ══════════════════════════════════════════
+   FormInput.css — matches landing page theme
+   ══════════════════════════════════════════ */
+
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 }
 
 .form-label {
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #333;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
+  color: #444;
+  font-family: 'Inter', sans-serif;
 }
 
 .required {
-  color: #e74c3c;
-  margin-left: 0.25rem;
+  color: #f97316;
+  margin-left: 0.2rem;
 }
 
 .form-input {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e5e0d8;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1a1a1a;
+  background: #faf8f5;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #bbb;
 }
 
 .form-input:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #f97316;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
 }
 
 .form-input.error {
-  border-color: #e74c3c;
-  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .error-message {
-  color: #e74c3c;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
+  color: #dc2626;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+  font-family: 'Inter', sans-serif;
 }

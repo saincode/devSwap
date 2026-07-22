@@ -1,29 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ══════════════════════════════════════════
+   AuthPages.css — matches LandingPage theme
+   Warm cream bg · orange accents · Inter font
+   ══════════════════════════════════════════ */
+
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #faf8f5;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
   padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .auth-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
+/* ── Brand bar above the card ── */
+.auth-brand {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-brand-name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.auth-brand-name span {
+  color: #f97316;
+}
+
+/* ── Card ── */
 .auth-card {
-  background: white;
-  border-radius: 10px;
+  background: #ffffff;
+  border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.5s ease-out;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(249, 115, 22, 0.06);
+  animation: auth-slideUp 0.45s ease both;
 }
 
-@keyframes slideUp {
+@keyframes auth-slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -31,96 +64,119 @@
   }
 }
 
+/* ── Heading ── */
 .auth-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #333;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  color: #111;
   text-align: center;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
 }
 
 .auth-subtitle {
   text-align: center;
-  color: #666;
+  font-size: 0.875rem;
+  color: #888;
   margin-bottom: 2rem;
+  line-height: 1.5;
 }
 
+/* ── Form ── */
 .auth-form {
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
+/* ── Submit button ── */
 .auth-button {
   width: 100%;
-  padding: 0.875rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  padding: 0.85rem;
+  background: #f97316;
+  color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 1rem;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-top: 0.75rem;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.3);
+  letter-spacing: -0.01em;
 }
 
 .auth-button:hover:not(:disabled) {
+  background: #ea6c0a;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
 }
 
 .auth-button:disabled {
-  opacity: 0.7;
+  opacity: 0.65;
   cursor: not-allowed;
+  transform: none;
 }
 
+/* ── Footer link row ── */
 .auth-footer {
   text-align: center;
-  padding-top: 1.5rem;
-  border-top: 1px solid #eee;
+  padding-top: 1.25rem;
+  border-top: 1px solid #f0ece5;
 }
 
 .auth-footer p {
-  color: #666;
+  color: #999;
+  font-size: 0.875rem;
   margin: 0;
 }
 
 .auth-link {
-  color: #667eea;
+  color: #f97316;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
+  font-weight: 700;
+  transition: color 0.2s;
 }
 
 .auth-link:hover {
-  color: #5568d3;
+  color: #ea6c0a;
 }
 
+/* ── Alert ── */
 .alert {
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  padding: 0.875rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  text-align: center;
 }
 
 .alert-error {
-  background-color: #fadbd8;
-  color: #c0392b;
-  border: 1px solid #e74c3c;
+  background: rgba(239, 68, 68, 0.08);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
+/* ── Loading fullscreen ── */
 .loading-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-size: 1.2rem;
+  background-color: #faf8f5;
+  color: #888;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
 }
 
+/* ── Responsive ── */
 @media (max-width: 480px) {
   .auth-card {
-    padding: 1.5rem;
+    padding: 1.75rem 1.5rem;
   }
 
   .auth-title {

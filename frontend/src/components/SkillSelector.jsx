@@ -5,10 +5,10 @@ import './SkillSelector.css';
 const PROFICIENCY_LEVELS = ['Beginner', 'Intermediate', 'Advanced', 'Expert'];
 
 const PROFICIENCY_META = {
-  Beginner:     { color: '#38a169', bg: '#f0fff4', label: '🌱 Beginner' },
-  Intermediate: { color: '#d69e2e', bg: '#fffff0', label: '⚡ Intermediate' },
-  Advanced:     { color: '#3182ce', bg: '#ebf8ff', label: '🔥 Advanced' },
-  Expert:       { color: '#805ad5', bg: '#faf5ff', label: '💎 Expert' },
+  Beginner:     { color: '#c2410c', bg: '#fff7ed', label: '🌱 Beginner' },
+  Intermediate: { color: '#b45309', bg: '#fef3c7', label: '⚡ Intermediate' },
+  Advanced:     { color: '#ea580c', bg: '#ffedd5', label: '🔥 Advanced' },
+  Expert:       { color: '#9a3412', bg: '#fee2e2', label: '💎 Expert' },
 };
 
 // Flatten all skills for quick global search

@@ -4,15 +4,26 @@ import { useAuth } from '../hooks/useAuth';
 import { FormInput } from '../components/FormInput';
 import './AuthPages.css';
 
-export function LoginPage() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+export function RegisterPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
   const [errors, setErrors] = useState({});
   const [generalError, setGeneralError] = useState('');
-  const { login, loading } = useAuth();
+  const { register, loading } = useAuth();
   const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
+
+    if (!formData.name) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
 
     if (!formData.email) {
       newErrors.email = 'Email is required';
@@ -24,6 +35,10 @@ export function LoginPage() {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
     }
 
     setErrors(newErrors);
@@ -51,25 +66,39 @@ export function LoginPage() {
     if (!validateForm()) return;
 
     try {
-      await login(formData.email, formData.password);
-      navigate('/dashboard');
+      await register(formData.name, formData.email, formData.password);
+      navigate('/profile-setup');
     } catch (error) {
-      setGeneralError(error.message || 'Login failed. Please try again.');
+      setGeneralError(error.message || 'Registration failed. Please try again.');
     }
   };
 
   return (
     <div className="auth-page">
       <div className="auth-container">
+        <div className="auth-brand">
+          <a href="/" className="auth-brand-name">Dev<span>Swap</span></a>
+        </div>
         <div className="auth-card">
-          <h1 className="auth-title">Welcome Back</h1>
-          <p className="auth-subtitle">Login to your DevSwap account</p>
+          <h1 className="auth-title">Join DevSwap</h1>
+          <p className="auth-subtitle">Create your account and start learning</p>
 
           {generalError && (
             <div className="alert alert-error">{generalError}</div>
           )}
 
           <form onSubmit={handleSubmit} className="auth-form">
+            <FormInput
+              label="Full Name"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              error={errors.name}
+              placeholder="John Doe"
+              required
+            />
+
             <FormInput
               label="Email Address"
               type="email"
@@ -92,16 +121,27 @@ export function LoginPage() {
               required
             />
 
+            <FormInput
+              label="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              error={errors.confirmPassword}
+              placeholder="••••••"
+              required
+            />
+
             <button type="submit" className="auth-button" disabled={loading}>
-              {loading ? 'Logging in...' : 'Login'}
+              {loading ? 'Creating account...' : 'Sign Up'}
             </button>
           </form>
 
           <div className="auth-footer">
             <p>
-              Don't have an account?{' '}
-              <Link to="/register" className="auth-link">
-                Sign up here
+              Already have an account?{' '}
+              <Link to="/login" className="auth-link">
+                Login here
               </Link>
             </p>
           </div>

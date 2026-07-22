@@ -63,6 +63,7 @@ router.put('/profile', verifyToken, async (req, res) => {
       isBeginnerMode,
       learningGoal,
       socialLinks,
+      avatar,
     } = req.body;
 
     const updateData = {
@@ -72,6 +73,7 @@ router.put('/profile', verifyToken, async (req, res) => {
       isBeginnerMode,
       learningGoal,
       socialLinks,
+      ...(avatar && { avatar }),
     };
 
     // Handle skillProficiency map
