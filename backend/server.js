@@ -17,11 +17,38 @@ const server = http.createServer(app);
 // ─────────────────────────────────────────────────────────────────────────────
 // Socket.IO setup
 // ─────────────────────────────────────────────────────────────────────────────
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
+const CLIENT_URL = (process.env.CLIENT_URL || 'http://localhost:3000').replace(/\/$/, '');
+
+const allowedOrigins = [
+  CLIENT_URL,
+  'http://localhost:3000',
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    const normalised = origin.replace(/\/$/, '');
+    if (allowedOrigins.includes(normalised)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS blocked: ${origin}`));
+    }
+  },
+  credentials: true,
+};
 
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_URL,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const normalised = origin.replace(/\/$/, '');
+      if (allowedOrigins.includes(normalised)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS blocked: ${origin}`));
+      }
+    },
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -33,10 +60,7 @@ connectDB();
 // ─────────────────────────────────────────────────────────────────────────────
 // Middleware
 // ─────────────────────────────────────────────────────────────────────────────
-app.use(cors({
-  origin: CLIENT_URL,
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Serve uploaded files as static assets
